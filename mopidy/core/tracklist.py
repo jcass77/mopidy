@@ -446,6 +446,8 @@ class TracklistController(object):
         logger.warning('Track is not playable: %s', tl_track.track.uri)
         if self.random and tl_track in self._shuffled:
             self._shuffled.remove(tl_track)
+        if self.repeat:
+            self.remove(tlid=[tl_track.tlid])
 
     def mark_played(self, tl_track):
         """Method for :class:`mopidy.core.PlaybackController`. **INTERNAL**"""
